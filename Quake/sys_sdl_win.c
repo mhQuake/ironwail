@@ -428,7 +428,13 @@ void Sys_Init (void)
 	Sys_SetDPIAware ();
 
 	memset (cwd, 0, sizeof(cwd));
+
+#ifdef _DEBUG
+	Q_strncpy (cwd, "C:\\Games\\SWQuake", sizeof (cwd));
+#else
 	Sys_GetBasedir(NULL, cwd, sizeof(cwd));
+#endif
+
 	host_parms->basedir = cwd;
 
 	host_parms->exedir = Sys_GetExeDir ();
